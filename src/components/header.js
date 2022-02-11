@@ -14,20 +14,20 @@ const Header = (title, date, temp) => {
   const headerDiv = document.createElement('div');
   const dateRecord = document.createElement('span');
   const docTitle = document.createElement('h1');
-  const temp = document.createElement('span');
+  const temperature = document.createElement('span');
  
-  header.classList.add('header');
+  headerDiv.classList.add('header');
   date.classList.add('date');
   temp.classList.add('temp');
  
-  date.textContent= `date: ${date}`;
-  temp.textContent= `temp: ${temp}`;
+  date.textContent= `date: ${dateRecord}`;
+  temp.textContent= `temp: ${temperature}`;
  
-  header.appendChild(date);
-  header.appendChild(docTitle);
-  header.appendChild(temp);
+  headerDiv.appendChild(dateRecord);
+  headerDiv.appendChild(docTitle);
+  headerDiv.appendChild(temperature);
  
-  return header
+  return headerDiv
 
 }
 
