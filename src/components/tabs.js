@@ -1,4 +1,5 @@
 // import { application } from "express";
+import axios from 'axios';
 
 
 const Tabs = (topics) => {
@@ -47,15 +48,33 @@ const tabsAppender = (selector) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-'./components/mocks/api.js'.get('http://localhost:5000/api/topics')
-  .then(resp => {
-    console.log(resp)
+axios.get(`http://localhost:5000/api/topics`)
+  .then( resp =>{
+    const topicsOrigin = resp.data.topics;
+    function shuffle(array) {
+      let currentIndex=array.length,   randomIndex;
+      while (currentIndex!=0) {
+randomIndex = Math.floor(Math.random() * currentIndex);
+currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+}
+return array
+      }
+    const topics = shuffle(topicsOrigin)
+    // console.log(topics)
+    const tabBuilder = Tabs(topics);
+    // const tabAttach = document.querySelector('.tabs-container')
+    tabsEntry.appendChild(tabBuilder)
+    
   })
-  .catch(err => {
-    console.error(err);
+  .catch( err => {
+    console.error(err)
   })
-  .finally(() => console.log ('done'))
+  .finally(() => console.log('done'))
+ 
 }
 
-console.log('http://localhost:5000/api/topics')
+
 export { Tabs, tabsAppender }
+
+
