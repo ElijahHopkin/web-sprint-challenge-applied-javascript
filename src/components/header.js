@@ -17,11 +17,13 @@ const Header = (title, date, temp) => {
   const temperature = document.createElement('span');
  
   headerDiv.classList.add('header');
-  date.classList.add('date');
-  temp.classList.add('temp');
+  dateRecord.classList.add('date');
+  temperature.classList.add('temp');
  
-  date.textContent= `date: ${dateRecord}`;
-  temp.textContent= `temp: ${temperature}`;
+  docTitle.textContent = title;
+  dateRecord.textContent= date;
+  temperature.textContent= temp;
+
  
   headerDiv.appendChild(dateRecord);
   headerDiv.appendChild(docTitle);
@@ -30,6 +32,8 @@ const Header = (title, date, temp) => {
   return headerDiv
 
 }
+const selector= '.header-container'
+const headerEntry=document.querySelector(selector);
 
 const headerAppender = (selector) => {
   // TASK 2
@@ -38,10 +42,16 @@ const headerAppender = (selector) => {
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
-const headConnector = document.querySelector(selector)
-selector.appendChild(Header)
-return headConnector
+  const headCreator = Header('FDR runs for fifth term!', 'November 5, 1946', '49°');
+  headerEntry.appendChild(headCreator);
+// selector.appendChild(Header)
+return headerEntry
 
 }
-
+// WOULD THIS WORK TO APPEND HEADER TO THE DOM?
+// const headerMaker = headerAppender('.header-container')
+// selector.appendChild(headerMaker)
+//  
+console.log('why will you not log anything?')
+console.log('anything?')
 export { Header, headerAppender }
