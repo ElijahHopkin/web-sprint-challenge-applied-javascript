@@ -34,11 +34,13 @@ const Tabs = (topics) => {
   tab1.textContent= topics[0];
   tab2.textContent= topics[1];
   tab3.textContent= topics[2];
+
+  return topicDiv
 }
 
 
-const tabSelector= '.tabs-container'
-const tabsEntry= document.querySelector(tabSelector)
+const selector= '.tabs-container'
+const tabsEntry= document.querySelector(selector)
 
 const tabsAppender = (selector) => {
   // TASK 4
@@ -64,7 +66,8 @@ return array
     // console.log(topics)
     const tabBuilder = Tabs(topics);
     // const tabAttach = document.querySelector('.tabs-container')
-    tabsEntry.appendChild(tabBuilder)
+    const tabsBase= document.querySelector('.tabs-container');
+    tabsBase.appendChild(tabBuilder)
     
   })
   .catch( err => {
@@ -73,7 +76,8 @@ return array
   .finally(() => console.log('done'))
  
 }
-
+// const tabLink= tabsAppender(selector);
+// tabsEntry.appendChild(tabLink);
 
 export { Tabs, tabsAppender }
 
