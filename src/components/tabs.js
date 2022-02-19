@@ -21,19 +21,28 @@ const Tabs = (topics) => {
   const tab1= document.createElement('div');
   const tab2 =document.createElement('div');
   const tab3 = document.createElement('div')
+  const tab4 = document.createElement('div')
+  const tab5 = document.createElement('div')
 
   topicDiv.appendChild(tab1);
   topicDiv.appendChild(tab2)
   topicDiv.appendChild(tab3);
+  topicDiv.appendChild(tab4);
+  topicDiv.appendChild(tab5)
 
   topicDiv.classList.add('topics');
   tab1.classList.add('tab');
   tab2.classList.add('tab');
   tab3.classList.add('tab');
+  tab4.classList.add('tab');
+  tab5.classList.add('tab');
+
   
   tab1.textContent= topics[0];
   tab2.textContent= topics[1];
   tab3.textContent= topics[2];
+  tab4.textContent = topics[3];
+  tab5.textContent= topics[4];
 
   return topicDiv
 }
@@ -52,32 +61,31 @@ const tabsAppender = (selector) => {
   //
 axios.get(`http://localhost:5000/api/topics`)
   .then( resp =>{
-    const topicsOrigin = resp.data.topics;
-    function shuffle(array) {
-      let currentIndex=array.length,   randomIndex;
-      while (currentIndex!=0) {
-randomIndex = Math.floor(Math.random() * currentIndex);
-currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
-}
-return array
-      }
-    const topics = shuffle(topicsOrigin)
+    const topics = resp.data.topics;
+
+//     function shuffle(array) {
+//       let currentIndex=array.length,   randomIndex;
+//       while (currentIndex!=0) {
+// randomIndex = Math.floor(Math.random() * currentIndex);
+// currentIndex--;
+//       [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+// }
+// return array
+//       }
+//     const topics = shuffle(topicsOrigin)
+    
     // console.log(topics)
     const tabBuilder = Tabs(topics);
-    // const tabAttach = document.querySelector('.tabs-container')
-    const tabsBase= document.querySelector('.tabs-container');
-    tabsBase.appendChild(tabBuilder)
-    
+    // const tabsBase= document.querySelector('.tabs-container');
+    // tabsBase.appendChild(tabBuilder)
+    document.querySelector('.tabs-container').appendChild(tabBuilder)
   })
   .catch( err => {
     console.error(err)
   })
   .finally(() => console.log('done'))
- 
+ return tabsEntry
 }
-// const tabLink= tabsAppender(selector);
-// tabsEntry.appendChild(tabLink);
 
 export { Tabs, tabsAppender }
 

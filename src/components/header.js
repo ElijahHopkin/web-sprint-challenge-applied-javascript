@@ -32,6 +32,8 @@ const Header = (title, date, temp) => {
   return headerDiv
 
 }
+
+//somehow the computer has trouble understanding what this is...as for the testing purposes
 const selector= '.header-container'
 const headerEntry=document.querySelector(selector);
 
@@ -43,7 +45,8 @@ const headerAppender = (selector) => {
   // It should append the header to the element in the DOM that matches the given selector.
   //
   const headCreator = Header('FDR runs for fifth term!', 'November 5, 1946', '49°');
-  headerEntry.appendChild(headCreator);
+  // headerEntry.appendChild(headCreator);
+  document.querySelector(selector).appendChild(headCreator)
 // selector.appendChild(Header)
 return headerEntry
 
