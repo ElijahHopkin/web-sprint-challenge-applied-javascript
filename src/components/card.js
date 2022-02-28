@@ -32,7 +32,7 @@ const Card = (article) => {
   imageDiv.classList.add('img-container');
 
   headlineDiv.textContent= `${article.headline}`;
-  image.src = `${article.authorPhoto_url}`;
+  image.src = `${article.authorPhoto}`;
   authorSpan.textContent = `${article.authorName}`;
 
   cardDiv.appendChild(headlineDiv);
@@ -62,8 +62,8 @@ axios.get('http://localhost:5000/api/articles')
   const cardReturn = resp.data.articles
   console.log(cardReturn)
   for( let key in cardReturn) {
-    cardReturn[key].forEach((object) => {
-        document.querySelector('.cards-container').appendChild(Card(object))
+    cardReturn[key].forEach((article) => {
+        document.querySelector('.cards-container').appendChild(Card(article))
     })
   }
 
@@ -77,6 +77,7 @@ axios.get('http://localhost:5000/api/articles')
   console.error(err)
 })
 .finally(() => console.log('done'))
+return cardConnector
 }
 
 export { Card, cardAppender }
