@@ -60,18 +60,12 @@ axios.get('http://localhost:5000/api/articles')
 
   // THIS SHOULD WORK. IT'S THE ONLY WAY I CAN THINK OF TO GET PAST THE OBJECT LAYER BETWEEN ARTICLES AND WHAT I NEED...
   const cardReturn = resp.data.articles
-  console.log(cardReturn)
+  // console.log(cardReturn)
   for( let key in cardReturn) {
     cardReturn[key].forEach((article) => {
-        document.querySelector('.cards-container').appendChild(Card(article))
+        document.querySelector(selector).appendChild(Card(article))
     })
   }
-
-//   const cardMaker = Card(resp.data.articles)
-  
-//   const cardBase = document.querySelector('.cards-container')
-//   console.log(cardMaker)
-// cardBase.appendChild(cardMaker)
 })
 .catch(err => {
   console.error(err)
